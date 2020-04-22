@@ -1,10 +1,10 @@
-package com.jspark.study;
+package com.jspark.health;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StudyApplicationTests {
+class HealthApplicationTests {
 
 	@Test
 	void contextLoads() {
