@@ -11,7 +11,7 @@ import com.jspark.health.dto.Gym;
 
 @Repository
 public interface GymRepository extends MongoRepository<Gym, String> {
-	  public List<Gym> findByNameLike(String name);
+	  public List<Gym> findByNameLikeAndLocationNear(String name, Point location, Distance distance);
 	  public List<Gym> findByAddress(String address);
 	  public List<Gym> findByLocationNear(Point location, Distance distance);
 }
