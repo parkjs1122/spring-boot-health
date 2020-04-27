@@ -32,7 +32,7 @@ public class GymController {
 	@RequestMapping("/gym/get/name/{name}/{longitude}/{latitude}")
 	public List<Gym> getGymByName(@PathVariable(value = "name") String name,
 			@PathVariable(value = "longitude") double longitude, @PathVariable(value = "latitude") double latitude) {
-		return repository.findByNameLikeAndLocationNear(name, new Point(longitude, latitude),
+		return repository.findByNameIgnoreCaseLikeAndLocationNear(name, new Point(longitude, latitude),
 				new Distance(20, Metrics.KILOMETERS));
 	}
 
