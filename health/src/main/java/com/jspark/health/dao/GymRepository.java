@@ -1,4 +1,4 @@
-package com.jspark.health.db;
+package com.jspark.health.dao;
 
 import java.util.List;
 
