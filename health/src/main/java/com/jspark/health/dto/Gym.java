@@ -15,11 +15,11 @@ import lombok.Data;
 public class Gym {
 	@Id
 	private String id;
-	@NotBlank(message="Name is required")
+	@NotBlank(message = "Name is required")
 	private String name;
-	@NotBlank(message="Address is required")
+	@NotBlank(message = "Address is required")
 	private String address;
-	@NotBlank(message="Location is required")
+	@NotBlank(message = "Location is required")
 	private GeoJsonPoint location;
 	private int dailyUse;
 	private int yogaRoom;
@@ -34,5 +34,5 @@ public class Gym {
 	private int hackSquatMachine;
 	private int barbell;
 	private int ezBar;
-	private Date updatedDate; 
+	private Date updatedDate;
 }
