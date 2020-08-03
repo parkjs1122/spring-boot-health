@@ -53,6 +53,7 @@ public class GymController {
 	}
 	
 	@DeleteMapping("/{gymId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteGym(@PathVariable("gymId") String gymId) {
 		try {
 			gymRepo.deleteById(gymId);
