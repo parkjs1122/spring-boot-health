@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,14 +30,14 @@ public class GymController {
 	@Autowired
 	GymRepository gymRepo;
 
-	@GetMapping("/get/location/{longitude}/{latitude}/{distance}")
+	@GetMapping("/location/{longitude}/{latitude}/{distance}")
 	public List<Gym> getGymByLocation(@PathVariable(value = "longitude") double longitude,
 			@PathVariable(value = "latitude") double latitude, @PathVariable(value = "distance") double distance) {
 		return gymRepo.findByLocationNear(new Point(longitude, latitude),
 				new Distance(distance, Metrics.KILOMETERS));
 	}
 
-	@GetMapping("/get/name/{name}/{longitude}/{latitude}")
+	@GetMapping("/name/{name}/{longitude}/{latitude}")
 	public List<Gym> getGymByName(@PathVariable(value = "name") String name,
 			@PathVariable(value = "longitude") double longitude, @PathVariable(value = "latitude") double latitude) {
 		return gymRepo.findByNameIgnoreCaseLikeAndLocationNear(name, new Point(longitude, latitude),
@@ -48,6 +50,13 @@ public class GymController {
 		gym.setUpdatedDate(new Date());
 		gymRepo.save(gym);
 		return gym;
+	}
+	
+	@DeleteMapping("/{gymId}")
+	public void deleteGym(@PathVariable("gymId") String gymId) {
+		try {
+			gymRepo.deleteById(gymId);
+		} catch (EmptyResultDataAccessException e) {}
 	}
 
 }
