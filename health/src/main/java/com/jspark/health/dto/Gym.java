@@ -2,21 +2,24 @@ package com.jspark.health.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 @Document(collection = "gym")
-@Getter @Setter @ToString
+@Data
 public class Gym {
 	@Id
 	private String id;
+	@NotBlank(message="Name is required")
 	private String name;
+	@NotBlank(message="Address is required")
 	private String address;
+	@NotBlank(message="Location is required")
 	private GeoJsonPoint location;
 	private int dailyUse;
 	private int yogaRoom;
